@@ -1,4 +1,4 @@
-name: EPG Uyumlu M3U Oluşturucu
+name: EPG
 
 on:
   schedule:
