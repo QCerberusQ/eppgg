@@ -1,4 +1,4 @@
-name: EPG 
+name: EPG-M3U 
 
 on:
   schedule:
