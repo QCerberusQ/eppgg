@@ -31,8 +31,8 @@ jobs:
 
       - name: Commit & Push
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "epg-bot"
+          git config --global user.email "epg@bot.com"
           git add epg.xml || echo "Dosya yok"
-          git commit -m "🔄 EPG uyumlu m3u güncellendi" || echo "Değişiklik yok"
+          git commit -m "🔄 EPG otomatik güncellendi" || echo "Değişiklik yok"
           git push origin main || echo "Push yok"
