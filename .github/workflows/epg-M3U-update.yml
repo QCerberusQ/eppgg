@@ -31,6 +31,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add kabloepg.m3u || echo "Dosya yok"
+          git add m3u-epg.m3u || echo "Dosya yok"
           git commit -m "🔄 EPG uyumlu m3u güncellendi" || echo "Değişiklik yok"
           git push origin main || echo "Push yok"
