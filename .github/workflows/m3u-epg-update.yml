@@ -1,12 +1,12 @@
-name: EPG Güncelle
+name: EPG Uyumlu M3U Oluşturucu
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 jobs:
-  epg-update:
+  m3u-generator:
     runs-on: ubuntu-latest
     steps:
       - name: Repo klonla
@@ -20,20 +20,19 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Bağımlılıkları yükle
+      - name: requests modülü
         run: pip install requests
 
-      - name: EPG Verisini Güncelle
+      - name: M3U EPG eşle ve oluştur
         run: |
-          python update_epg.py
-          ls -lah
+          python epg_matcher.py
 
-      - name: Güncellemeleri GitHub'a gönder
+      - name: Commit et ve pushla
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "epg-bot"
           git config --global user.email "epg@bot.com"
-          git add epg.xml || echo "Dosya yok"
-          git commit -m "🔄 EPG otomatik güncellendi" || echo "Değişiklik yok"
-          git push origin main || echo "Push yapılmadı"
+          git add m3u-epg.m3u || echo "Dosya yok"
+          git commit -m "🔄 EPG uyumlu m3u güncellendi" || echo "Değişiklik yok"
+          git push origin main || echo "Push yok"
