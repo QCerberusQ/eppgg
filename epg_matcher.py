@@ -1,9 +1,10 @@
+import requests
 import re
 import xml.etree.ElementTree as ET
 import difflib
 
-M3U_FILE = "kablo.m3u"
-EPG_FILE = "epg.xml"
+M3U_URL = "https://raw.githubusercontent.com/atakan1983/kabloo/main/mehmet.m3u"
+EPG_URL = "https://raw.githubusercontent.com/atakan1983/iptvepg/main/epg.xml"
 OUTPUT_FILE = "m3u-epg.m3u"
 
 # Özel kanal eşleştirme varyantları
@@ -12,23 +13,15 @@ ALTERNATIVE_NAMES = {
 }
 
 def fetch_m3u():
-    try:
-        with open(M3U_FILE, "r", encoding="utf-8") as f:
-            return f.read()
-    except Exception as e:
-        print(f"❌ M3U dosyası okunamadı: {e}")
-        return None
+    r = requests.get(M3U_URL)
+    return r.text if r.status_code == 200 else None
 
 def fetch_epg_ids():
-    try:
-        with open(EPG_FILE, "r", encoding="utf-8") as f:
-            epg_data = f.read()
-    except Exception as e:
-        print(f"❌ EPG dosyası okunamadı: {e}")
+    r = requests.get(EPG_URL)
+    if r.status_code != 200:
         return {}
-
     epg_ids = {}
-    root = ET.fromstring(epg_data)
+    root = ET.fromstring(r.text)
     for ch in root.findall("channel"):
         disp = ch.findtext("display-name")
         cid = ch.attrib.get("id")
@@ -40,13 +33,14 @@ def fetch_epg_ids():
 def clean_name(name):
     name = name.lower()
     name = name.replace("&", "ve")
-    name = re.sub(r'[^a-z0-9]', '', name)
+    name = re.sub(r'[^a-z0-9]', '', name)  # sadece harf ve rakam
     name = name.replace("ç", "c").replace("ğ", "g").replace("ı", "i").replace("ö", "o").replace("ş", "s").replace("ü", "u")
     return name.strip()
 
 def fuzzy_match(name, epg_map):
     cleaned = clean_name(name)
 
+    # Özel eşleştirme listesi
     for epg_key, aliases in ALTERNATIVE_NAMES.items():
         for alias in aliases:
             if clean_name(alias) == cleaned:
@@ -55,6 +49,7 @@ def fuzzy_match(name, epg_map):
     if cleaned in epg_map:
         return epg_map[cleaned]
 
+    # fuzzy eşleşme
     matches = difflib.get_close_matches(cleaned, epg_map.keys(), n=1, cutoff=0.6)
     if matches:
         return epg_map[matches[0]]
@@ -62,7 +57,7 @@ def fuzzy_match(name, epg_map):
 
 def process_m3u(m3u_data, epg_map):
     lines = m3u_data.splitlines()
-    output = ['#EXTM3U url-tvg="epg.xml"']
+    output = ['#EXTM3U url-tvg="https://raw.githubusercontent.com/atakan1983/iptvepg/main/epg.xml"']
     for i in range(len(lines)):
         line = lines[i]
         if line.startswith("#EXTINF:"):
@@ -86,7 +81,7 @@ def save_output(content):
         f.write(content)
 
 def main():
-    print("🔄 Yerel M3U ve EPG dosyaları alınıyor...")
+    print("🔄 M3U ve EPG verileri alınıyor...")
     m3u = fetch_m3u()
     epg_map = fetch_epg_ids()
     if not m3u or not epg_map:
