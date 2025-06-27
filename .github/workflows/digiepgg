@@ -1,4 +1,4 @@
-name: EPG 
+name: digiepg update
 
 on:
   schedule:
@@ -27,7 +27,7 @@ jobs:
 
       - name: EPG Verisini Güncelle
         run: |
-          python Digitürkepg.py
+          python digiepg.py
           ls -lah
 
       - name: Commit & Push
