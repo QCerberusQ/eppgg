@@ -23,7 +23,7 @@ jobs:
 
       - name: Bağımlılıkları yükle
         run: pip install requests
-             pip beautifulsoup4
+        run: pip beautifulsoup4
 
       - name: EPG Verisini Güncelle
         run: |
