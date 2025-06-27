@@ -33,6 +33,6 @@ jobs:
         run: |
           git config --global user.name "epg-bot"
           git config --global user.email "epg@bot.com"
-          git add epgdigi.xml || echo "Dosya yok"
+          git add epgdigideneme.xml || echo "Dosya yok"
           git commit -m "🔄 EPG otomatik güncellendi" || echo "Değişiklik yok"
           git push origin main || echo "Push yok"
