@@ -105,7 +105,7 @@ foreach ($kanalDivs as $kanalDiv) {
     }
 }
 
-$dosyaAdi = 'epg.xml';
+$dosyaAdi = 'digiphpepg.xml';
 $epg->save($dosyaAdi);
 
 header('Content-Type: application/xml; charset=utf-8');
