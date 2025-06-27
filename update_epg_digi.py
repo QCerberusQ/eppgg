@@ -1,7 +1,7 @@
 import requests
 
-XML_URL = "https://belgeselsemo.com.tr/yayin-akisi2/xml/turkey3.xml"
-OUTPUT_FILE = "epg.xml"
+XML_URL = "https://raw.githubusercontent.com/QCerberusQ/eppgg/refs/heads/main/digiphpepg.xml"
+OUTPUT_FILE = "epgdigideneme.xml"
 
 def update_epg():
     print("🔎 XML indiriliyor:", XML_URL)
