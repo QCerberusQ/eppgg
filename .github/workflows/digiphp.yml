@@ -31,7 +31,7 @@ jobs:
         # Digitürkepg.php betiğini çalıştırır.
         # Betiğin çıktı olarak bir epg.xml dosyası oluşturduğunu varsayarız.
         run: |
-          php Digitürkepg.php
+          php Digiiepg.php
           ls -lah # Hata ayıklama için oluşturulan dosyaları listeler
 
       - name: Değişiklikleri Kaydet ve Push Et
