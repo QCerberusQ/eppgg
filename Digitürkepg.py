@@ -67,8 +67,8 @@ for channel in channels:
         ET.SubElement(programme, "title").text = title
 
 tree = ET.ElementTree(tv)
-tree.write("epg.xml", encoding="utf-8", xml_declaration=True)
+tree.write("digiepg.xml", encoding="utf-8", xml_declaration=True)
 
-print("epg.xml başarıyla oluşturuldu.")
+print("digiepg.xml başarıyla oluşturuldu.")
 
 #Sakultah tarafından yapılmıştır iyi kullanımlar :)
