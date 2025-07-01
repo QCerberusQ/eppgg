@@ -2,12 +2,14 @@ name: Kablo EPG Bot
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # Her 3 saatte bir (UTC)
+    - cron: '0 */10 * * *' # Her 3 saatte bir (UTC)
   workflow_dispatch:
 
 jobs:
   run-epg-bot:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Bu satırı ekleyin
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -20,7 +22,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          pip install requests # Eğer requirements.txt kullanmıyorsanız bu şekilde
+          # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi # Eğer requirements.txt kullanıyorsanız bu kalsın
 
       - name: Run digikablo.py
         run: python digikablo.py
