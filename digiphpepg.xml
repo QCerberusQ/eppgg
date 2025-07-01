@@ -3846,11 +3846,11 @@
   <programme start="20250701084000 +0000" stop="20250701090000 +0000" channel="31" id="program1251">
     <title>Pedalın Senfonisi</title>
   </programme>
-  <programme start="20250701090000 +0000" stop="20250701092000 +0000" channel="31" id="program1252">
-    <title>Dinamik Sabahlar</title>
-  </programme>
-  <programme start="20250701090000 +0000" stop="20250701091500 +0000" channel="31" id="program1253">
+  <programme start="20250701090000 +0000" stop="20250701091500 +0000" channel="31" id="program1252">
     <title>Haber Bülteni</title>
+  </programme>
+  <programme start="20250701090000 +0000" stop="20250701092000 +0000" channel="31" id="program1253">
+    <title>Dinamik Sabahlar</title>
   </programme>
   <programme start="20250701091500 +0000" stop="20250701093000 +0000" channel="31" id="program1254">
     <title>Spor Her Yerde</title>
