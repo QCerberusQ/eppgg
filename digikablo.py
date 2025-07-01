@@ -22,7 +22,7 @@ def dt_to_xmltv(dtstr):
 
 def main():
     output_dir = get_script_dir()
-    epg_path = os.path.join(output_dir, "kabloepg.xml")
+    epg_path = os.path.join(output_dir, "digikabloepg.xml")
 
     # Kanal listesini çek
     r = requests.get(CHANNELS_URL, headers=headers)
