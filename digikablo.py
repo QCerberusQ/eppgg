@@ -59,7 +59,7 @@ def main():
 
     tree = ET.ElementTree(tv)
     tree.write(epg_path, encoding="utf-8", xml_declaration=True)
-    print("\nkabloepg.xml başarıyla oluşturuldu.")
+    print("\ndigikabloepg.xml başarıyla oluşturuldu.")
 
 if __name__ == "__main__":
     main()
