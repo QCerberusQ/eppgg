@@ -2,7 +2,7 @@ name: Kablo EPG Bot
 
 on:
   schedule:
-    - cron: '0 */10 * * *' # Her 3 saatte bir (UTC)
+    - cron: '0 */8 * * *' # Her 8 saatte bir (UTC)
   workflow_dispatch:
 
 jobs:
